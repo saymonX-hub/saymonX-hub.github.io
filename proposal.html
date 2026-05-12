@@ -1,99 +1,65 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<title>For Tanha 💍</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Will you be mine?</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins';background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden}
-.box{background:rgba(255,255,255,.08);backdrop-filter:blur(15px);border:1px solid rgba(255,182,193,.2);padding:40px 30px;border-radius:25px;text-align:center;max-width:450px;width:90%;box-shadow:0 8px 32px rgba(255,107,157,.3);z-index:1}
-h1{font-family:'Great Vibes';color:#ffb6c1;font-size:3em;margin:10px 0;text-shadow:0 0 15px rgba(255,182,193,.5)}
-p{color:#e8d5ff;margin-bottom:20px}
-.heart-box{position:relative;width:280px;height:250px;margin:20px auto;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:15px}
-.heart-box::before,.heart-box::after{content:'';position:absolute;width:140px;height:220px;background:linear-gradient(135deg,rgba(255,107,157,.15),rgba(196,69,105,.15));border-radius:70px 70px 0 0;border:2px solid rgba(255,182,193,.3);backdrop-filter:blur(10px);z-index:-1}
-.heart-box::before{left:0;transform:rotate(-45deg);transform-origin:100% 100%}
-.heart-box::after{right:0;transform:rotate(45deg);transform-origin:0 100%}
-button{padding:12px 30px;border:none;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins';z-index:2}
-.yes{background:linear-gradient(135deg,#ff6b9d,#c44569);color:#fff;box-shadow:0 4px 15px rgba(255,107,157,.4)}
-.yes:hover{transform:scale(1.1)}
-.no{background:rgba(255,255,255,.1);color:#e8d5ff;border:1px solid rgba(255,255,255,.2)}
-button{padding:12px 30px;border:none;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins';z-index:2}
-.yes{background:linear-gradient(135deg,#ff6b9d,#c44569);color:#fff;box-shadow:0 4px 15px rgba(255,107,157,.4)}
-.yes:hover{transform:scale(1.1)}
-.no{background:rgba(255,255,255,.1);color:#e8d5ff;border:1px solid rgba(255,255,255,.2)}
-.msg{display:none;color:#ffb6c1;margin-top:15px;animation:shake .5s;font-size:.95em}
-@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
-.heart{position:fixed;color:rgba(255,182,193,.2);font-size:20px;animation:float 10s infinite;pointer-events:none}
-@keyframes float{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:1}100%{transform:translateY(-100vh);opacity:0}}
-    .caption-box {
-      margin-top: 20px;
-      display: none;
-    }
-    .caption {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2em;
-      color: #ffb6c1;
-      margin: 12px 0;
-      opacity: 0;
-      animation: fadeInUp 1s forwards;
-    }
-    .sub-caption {
-      font-size: 1em;
-      color: #e8d5ff;
-      margin: 8px 0;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeInUp 1s forwards;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .flower {
-      position: fixed;
-      bottom: -150px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 120px;
-      opacity: 0;
-      transition: all 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 10;
-      filter: drop-shadow(0 10px 20px rgba(255,107,157,0.4));
-    }
-    .flower.show {
-      bottom: 40%;
-      opacity: 1;
-    }
-</style></head><body>
-<div id="hearts"></div>
-<div class="box">
-  <div id="q">
-    <div style="font-size:2em">💍</div>
-    <h1>I love you Tanha</h1>
-    <p>Will you marry me?</p>
-    <div class="heart-box">
-      <button class="yes" onclick="yes()">Yes 💕</button>
-      <button class="no" id="n" onclick="no()">No</button>
-    </div>
-    <div class="msg" id="m">Tanha please 🥺 Abar try koro!</div>
-  </div>
-          <div class="caption-box" id="captionBox">
-          <div class="caption" style="animation-delay: 0.3s">She said Yes ✨</div>
-          <div class="sub-caption" style="animation-delay: 0.6s">In you, I've found my home</div>
-          <div class="sub-caption" style="animation-delay: 0.9s">And in your heart, my forever</div>
-          <div class="sub-caption" style="animation-delay: 1.2s">This is where our always begins</div>
-          <div class="caption" style="animation-delay: 1.5s">Tanha + Saymon = ∞</div>
-          <div class="sub-caption" style="animation-delay: 1.8s">You + Me = Everything</div>
-        </div>
-  <div class="gift" id="g">
-    <h1>She Said Yes! 💖</h1>
-    <div class="emoji">🎁💕</div>
-    <div class="text" id="t"></div>
-  </div>
+.btn{background:linear-gradient(45deg,#ff4081,#f50057);color:white;border:none;padding:15px 40px;font-size:1.2rem;border-radius:50px;cursor:pointer;margin:10px;box-shadow:0 4px 15px rgba(245,0,87,0.4);transition:all .3s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(245,0,87,0.6)}
+.btn-no{background:linear-gradient(45deg,#9e9e9e,#616161);box-shadow:0 4px 15px rgba(97,97,97,0.4)}
+.btn-no:hover{box-shadow:0 6px 20px rgba(97,97,97,0.6)}
+.hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.heart{position:absolute;font-size:20px;color:#ff4081;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}
+.gif-box{display:none;margin-top:20px}
+.gif-box img{width:200px;height:200px;border-radius:10px;object-fit:cover}
+#heartbox{margin-top:20px;font-size:24px;line-height:1}
+.btn{background:linear-gradient(45deg,#ff4081,#f50057);color:white;border:none;padding:15px 40px;font-size:1.2rem;border-radius:50px;cursor:pointer;margin:10px;box-shadow:0 4px 15px rgba(245,0,87,0.4);transition:all .3s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(245,0,87,0.6)}
+.btn-no{background:linear-gradient(45deg,#9e9e9e,#616161);box-shadow:0 4px 15px rgba(97,97,97,0.4)}
+.btn-no:hover{box-shadow:0 6px 20px rgba(97,97,97,0.6)}
+.hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.heart{position:absolute;font-size:20px;color:#ff4081;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}
+.gif-box{display:none;margin-top:20px}
+.gif-box img{width:200px;height:200px;border-radius:10px;object-fit:cover}
+#heartbox{margin-top:20px;font-size:24px;line-height:1}
+.flower{position:fixed;bottom:-100px;left:50%;transform:translateX(-50%) scale(0);font-size:100px;transition:all 2s ease-out;z-index:5}
+.flower.show{bottom:40%;transform:translateX(-50%) scale(1)}
+.caption-box{display:none;margin-top:20px;background:rgba(255,255,255,0.3);padding:15px;border-radius:15px}
+.caption-line{opacity:0;animation:fadeIn 1s ease forwards;font-size:1.1rem;color:#d81b60;font-weight:600;margin:8px 0}
+.caption-line:nth-child(1){animation-delay:0.5s}
+.caption-line:nth-child(2){animation-delay:1.5s}
+.caption-line:nth-child(3){animation-delay:2.5s}
+@keyframes fadeIn{to{opacity:1}}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<div class="container">
+<div id="question">
+<h1>Will you be my girlfriend? 💍</h1>
+<button class="btn" onclick="yes()">Yes</button>
+<button class="btn btn-no" onclick="alert('Please? 🥺')">No</button>
+</div>
+<div class="gif-box" id="gifbox">
+<img src="https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif" alt="Happy">
+<h1>She said Yes! ✨</h1>
+</div>
+<div class="caption-box" id="captionBox">
+<div class="caption-line">You make my world brighter 💫</div>
+<div class="caption-line">I promise to love you forever ❤️</div>
+<div class="caption-line">Will you be mine? 💍</div>
+</div>
+<div id="heartbox"></div>
 </div>
 <script>
-for(let i=0;i<12;i++){let h=document.createElement('div');h.className='heart';h.innerHTML='💕';h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*10+'s';document.getElementById('hearts').appendChild(hlet function yes(){q.style.display='none';g.style.display='block';let s='';for(let i=1;i<=50;i++)s+=i+'. I Love You Tanha 💕<br>';t.innerHTML=s;for(let i=0;i<30;i++)setTimeout(()=>{let e=document.createElement('div');e.innerHTML='💖';e.style.cssText=`position:fixed;left:${Math.random()*100}%;top:-20px;font-size:${Math.random()*15+15}px;animation:fall ${Math.random()*2+2}s linear;z-index:999`;document.body.appendChild(e);setTimeout(()=>e.remove(),4000)}function no(){c++;n.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px) scale(${1-c*.15})`;m.style.display='block';if(c>=4){n.style.display='none';m.innerHTML='No button gayeb 😏 Ekhon Yes chapo!'document.head.insertAdjacentHTML('beforeend','<style>@keyframes fall{to{transform:translateY(100vh) ropacity:0}}</style>function yes(){q.style.display='none';g.style.display='block';document.getElementById('captionBox').style.display='block';document.getElementById('flower').classList.add('show');let s='';for(le                                                                                                                                                                                                                                    function yes(){q.style.display='none';g.style.display='block';document.getElementById('captionBox').style.display='block';document.getElementById('flower').classList.add('show');let s='';for(let i=0;i<40;i++
-  function yes(){q.style.display='none';g.style.display='block';document.getElementById('captionBox').style.display='block';document.getElementById('flower').classList.add('show');let s='';for(let i=0;i<40;i++)s+='💖';t.innerHTML=s;}
+const q=document.getElementById('question');
+const g=document.getElementById('gifbox');
+const t=document.getElementById('heartbox');
+for(let i=0;i<12;i++){let h=document.createElement('div');h.className='heart';h.innerHTML='💖';h.style.left=Math.random()*100+'vw';h.style.animationDuration=Math.random()*3+7+'s';document.getElementById('hearts').appendChild(h);}
+function yes(){q.style.display='none';g.style.display='block';document.getElementById('captionBox').style.display='block';document.getElementById('flower').classList.add('show');let s='';for(let i=0;i<40;i++)s+='💖';t.innerHTML=s;}
 </script>
 <div class="flower" id="flower">🌹</div>
 </body>
