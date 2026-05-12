@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap');
     
-    * {margin:0;padding:0;box-sizing:border-box;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
@@ -18,9 +18,9 @@
       min-height: 100vh;
     }
     
-    .container {max-width: 650px;margin: 0 auto;}
+    .container { max-width: 650px; margin: 0 auto; }
     
-    .header {margin: 20px 0 30px 0;}
+    .header { margin: 20px 0 30px 0; }
     .doraemon-img {
       width: 140px;
       height: 140px;
@@ -31,9 +31,10 @@
       animation: float 3s ease-in-out infinite;
     }
     @keyframes float {
-      0%, 100% {transform: translateY(0px);}
-      50% {transform: translateY(-10px);}
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
+    
     h1 {
       font-size: 36px;
       font-weight: 900;
@@ -52,7 +53,10 @@
       margin-bottom: 30px;
       font-weight: 700;
       letter-spacing: 1px;
-     <body>
+    }
+  </style>
+</head>
+<body>
   <div class="container">
     <div class="header">
       <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" alt="Doraemon" class="doraemon-img">
@@ -67,15 +71,14 @@
         <div class="game-title">Tic Tac Toe</div>
         <div class="game-desc">Classic X vs O. Can you beat the game?</div>
       </a>
-
+      
       <a href="game2.html" class="game-card">
         <div class="game-icon">✊✋✌️</div>
         <div class="game-title">Rock Paper Scissors</div>
         <div class="game-desc">Play against computer. Best of luck!</div>
       </a>
     </div>
-
-    <div class="comment-section">
+<div class="comment-section">
       <h2>💬 Leave a Comment</h2>
       <form class="comment-form" onsubmit="addComment(event)">
         <input type="text" id="userName" placeholder="Your Name" required>
@@ -88,7 +91,8 @@
     <p class="footer">Made with ❤️ by Saymon | Powered by Doraemon's gadgets</p>
   </div>
 
-  <img src="https://i.imgur.com/8QfGz3a.png" alt="Nobita" class="nobita">   
+  <img src="https://i.imgur.com/8QfGz3a.png" alt="Nobita" class="nobita">
+
   <script>
     function loadComments() {
       const comments = JSON.parse(localStorage.getItem('saymonComments')) || [];
@@ -110,27 +114,23 @@
         `;
       });
     }
-
     function addComment(e) {
       e.preventDefault();
       const name = document.getElementById('userName').value.trim();
       const text = document.getElementById('userComment').value.trim();
-      
       if (!name || !text) return;
       
       const comments = JSON.parse(localStorage.getItem('saymonComments')) || [];
-      const newComment = {
+      comments.push({
         name: name,
         text: text,
-        date: new Date().toLocaleString('en-US', { 
-          year: 'numeric', month: 'short', day: 'numeric', 
-          hour: '2-digit', minute: '2-digit' 
+        date: new Date().toLocaleString('en-US', {
+          year: 'numeric', month: 'short', day: 'numeric',
+          hour: '2-digit', minute: '2-digit'
         })
-      };
+      });
       
-      comments.push(newComment);
       localStorage.setItem('saymonComments', JSON.stringify(comments));
-      
       document.getElementById('userName').value = '';
       document.getElementById('userComment').value = '';
       loadComments();
@@ -145,4 +145,4 @@
     window.onload = loadComments;
   </script>
 </body>
-</html>    
+</html>
