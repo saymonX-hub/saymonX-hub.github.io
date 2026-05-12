@@ -120,3 +120,28 @@
   drawBoard();
 </script>
 <!-- Tic Tac Toe Game End -->
+function makeMove(index) {
+  if (board[index]!== "" ||!gameActive) return;
+  board[index] = "X";
+  checkResult();
+  drawBoard();
+
+  if (gameActive) {
+    statusDiv.textContent = "Computer vabtese...";
+    setTimeout(() => {
+      computerMove();
+      checkResult();
+      drawBoard();
+      if (gameActive) statusDiv.textContent = "Tomar chal";
+    }, 500);
+  }
+}
+
+function computerMove() {
+  let empty = [];
+  board.forEach((cell, i) => { if(cell === "") empty.push(i); });
+  if(empty.length > 0) {
+    let randomMove = empty[Math.floor(Math.random() * empty.length)];
+    board[randomMove] = "O";
+  }
+}
