@@ -52,3 +52,97 @@
       margin-bottom: 30px;
       font-weight: 700;
       letter-spacing:
+     <body>
+  <div class="container">
+    <div class="header">
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" alt="Doraemon" class="doraemon-img">
+      <h1>Welcome to Saymon's Game Zone!</h1>
+      <p class="intro">Hi, I'm Saymon 👋</p>
+      <p class="role">Web Designer & Programmer 💻</p>
+    </div>
+
+    <div class="games-grid">
+      <a href="game.html" class="game-card">
+        <div class="game-icon">❌⭕</div>
+        <div class="game-title">Tic Tac Toe</div>
+        <div class="game-desc">Classic X vs O. Can you beat the game?</div>
+      </a>
+
+      <a href="game2.html" class="game-card">
+        <div class="game-icon">✊✋✌️</div>
+        <div class="game-title">Rock Paper Scissors</div>
+        <div class="game-desc">Play against computer. Best of luck!</div>
+      </a>
+    </div>
+
+    <div class="comment-section">
+      <h2>💬 Leave a Comment</h2>
+      <form class="comment-form" onsubmit="addComment(event)">
+        <input type="text" id="userName" placeholder="Your Name" required>
+        <textarea id="userComment" placeholder="Write your message here..." required></textarea>
+        <button type="submit" class="send-btn">Post Comment 🚀</button>
+      </form>
+      <div id="comments-list"></div>
+    </div>
+
+    <p class="footer">Made with ❤️ by Saymon | Powered by Doraemon's gadgets</p>
+  </div>
+
+  <img src="https://i.imgur.com/8QfGz3a.png" alt="Nobita" class="nobita">   
+  <script>
+    function loadComments() {
+      const comments = JSON.parse(localStorage.getItem('saymonComments')) || [];
+      const list = document.getElementById('comments-list');
+      
+      if (comments.length === 0) {
+        list.innerHTML = '<p class="no-comments">No comments yet. Be the first! 😊</p>';
+        return;
+      }
+      
+      list.innerHTML = '';
+      comments.slice().reverse().forEach(c => {
+        list.innerHTML += `
+          <div class="comment-box">
+            <div class="comment-name">${escapeHtml(c.name)}</div>
+            <div class="comment-text">${escapeHtml(c.text)}</div>
+            <div class="comment-date">${c.date}</div>
+          </div>
+        `;
+      });
+    }
+
+    function addComment(e) {
+      e.preventDefault();
+      const name = document.getElementById('userName').value.trim();
+      const text = document.getElementById('userComment').value.trim();
+      
+      if (!name || !text) return;
+      
+      const comments = JSON.parse(localStorage.getItem('saymonComments')) || [];
+      const newComment = {
+        name: name,
+        text: text,
+        date: new Date().toLocaleString('en-US', { 
+          year: 'numeric', month: 'short', day: 'numeric', 
+          hour: '2-digit', minute: '2-digit' 
+        })
+      };
+      
+      comments.push(newComment);
+      localStorage.setItem('saymonComments', JSON.stringify(comments));
+      
+      document.getElementById('userName').value = '';
+      document.getElementById('userComment').value = '';
+      loadComments();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    window.onload = loadComments;
+  </script>
+</body>
+</html>    
