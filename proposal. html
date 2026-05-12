@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>For Tanha 💍</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins';background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.box{background:rgba(255,255,255,.08);backdrop-filter:blur(15px);border:1px solid rgba(255,182,193,.2);padding:40px 30px;border-radius:25px;text-align:center;max-width:450px;width:90%;box-shadow:0 8px 32px rgba(255,107,157,.3);z-index:1}
+h1{font-family:'Great Vibes';color:#ffb6c1;font-size:3em;margin:10px 0;text-shadow:0 0 15px rgba(255,182,193,.5)}
+p{color:#e8d5ff;margin-bottom:20px}
+.heart-box{position:relative;width:280px;height:250px;margin:20px auto;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:15px}
+.heart-box::before,.heart-box::after{content:'';position:absolute;width:140px;height:220px;background:linear-gradient(135deg,rgba(255,107,157,.15),rgba(196,69,105,.15));border-radius:70px 70px 0 0;border:2px solid rgba(255,182,193,.3);backdrop-filter:blur(10px);z-index:-1}
+.heart-box::before{left:0;transform:rotate(-45deg);transform-origin:100% 100%}
+.heart-box::after{right:0;transform:rotate(45deg);transform-origin:0 100%}
+button{padding:12px 30px;border:none;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins';z-index:2}
+.yes{background:linear-gradient(135deg,#ff6b9d,#c44569);color:#fff;box-shadow:0 4px 15px rgba(255,107,157,.4)}
+.yes:hover{transform:scale(1.1)}
+.no{background:rgba(255,255,255,.1);color:#e8d5ff;border:1px solid rgba(255,255,255,.2)}
+button{padding:12px 30px;border:none;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;transition:.3s;font-family:'Poppins';z-index:2}
+.yes{background:linear-gradient(135deg,#ff6b9d,#c44569);color:#fff;box-shadow:0 4px 15px rgba(255,107,157,.4)}
+.yes:hover{transform:scale(1.1)}
+.no{background:rgba(255,255,255,.1);color:#e8d5ff;border:1px solid rgba(255,255,255,.2)}
+.msg{display:none;color:#ffb6c1;margin-top:15px;animation:shake .5s;font-size:.95em}
+@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.heart{position:fixed;color:rgba(255,182,193,.2);font-size:20px;animation:float 10s infinite;pointer-events:none}
+@keyframes float{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:1}100%{transform:translateY(-100vh);opacity:0}}
+</style></head><body>
+<div id="hearts"></div>
+<div class="box">
+  <div id="q">
+    <div style="font-size:2em">💍</div>
+    <h1>I love you Tanha</h1>
+    <p>Will you marry me?</p>
+    <div class="heart-box">
+      <button class="yes" onclick="yes()">Yes 💕</button>
+      <button class="no" id="n" onclick="no()">No</button>
+    </div>
+    <div class="msg" id="m">Tanha please 🥺 Abar try koro!</div>
+  </div>
+  <div class="gift" id="g">
+    <h1>She Said Yes! 💖</h1>
+    <div class="emoji">🎁💕</div>
+    <div class="text" id="t"></div>
+  </div>
+</div>
+<script>
+for(let i=0;i<12;i++){let h=document.createElement('div');h.className='heart';h.innerHTML='💕';h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*10+'s';document.getElementById('hearts').appendChild(h)}
+let c=0;
+function yes(){q.style.display='none';g.style.display='block';let s='';for(let i=1;i<=50;i++)s+=i+'. I Love You Tanha 💕<br>';t.innerHTML=s;for(let i=0;i<30;i++)setTimeout(()=>{let e=document.createElement('div');e.innerHTML='💖';e.style.cssText=`position:fixed;left:${Math.random()*100}%;top:-20px;font-size:${Math.random()*15+15}px;animation:fall ${Math.random()*2+2}s linear;z-index:999`;document.body.appendChild(e);setTimeout(()=>e.remove(),4000)},i*50)}
+function no(){c++;n.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px) scale(${1-c*.15})`;m.style.display='block';if(c>=4){n.style.display='none';m.innerHTML='No button gayeb 😏 Ekhon Yes chapo!'}}
+document.head.insertAdjacentHTML('beforeend','<style>@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}</style>');
+</script></body></html>
