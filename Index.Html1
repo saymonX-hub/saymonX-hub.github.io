@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saymon's Website</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
+        }
+        .card {
+            background: #1e293b; border-radius: 20px; padding: 40px; text-align: center;
+            max-width: 400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .profile-pic {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 4px solid #3b82f6; margin-bottom: 20px;
+        }
+        h1 { font-size: 28px; margin-bottom: 10px; }
+        p { color: #94a3b8; margin-bottom: 25px; line-height: 1.6; }
+        .links a {
+            display: inline-block; background: #3b82f6; color: white; padding: 12px 24px;
+            border-radius: 8px; text-decoration: none; margin: 5px; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://via.placeholder.com/150" alt="My Photo" class="profile-pic">
+        <h1>Saymon</h1>
+        <p>Ami web development shikhtesi. Eta amar prothom website 🚀</p>
+        <div class="links">
+            <a href="https://instagram.com/" target="_blank">Instagram</a>
+            <a href="https://github.com/saymonX-hub" target="_blank">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
