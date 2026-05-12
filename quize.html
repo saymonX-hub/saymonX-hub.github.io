@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saymon Special Quiz - Game Zone</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 { color: #667eea; margin-bottom: 10px; }
+      .question {
+            font-size: 20px;
+            margin: 20px 0;
+            color: #333;
+            font-weight: bold;
+            min-height: 60px;
+        }
+      .options { display: grid; gap: 12px; margin: 25px 0; }
+      .option {
+            background: #f0f0f0;
+            border: 3px solid transparent;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+      .option:hover { background: #667eea; color: white; transform: scale(1.03); }
+      .correct { background: #4CAF50!important; color: white!important; border-color: #45a049; }
+      .wrong { background: #f44336!important; color: white!important; border-color: #da190b; }
+        #score { font-size: 22px; margin: 15px 0; color: #764ba2; font-weight: bold; }
+        #progress { font-size: 16px; color: #666; margin-bottom: 10px; }
+        #next-btn, #restart-btn, #home-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 8px;
+            display: none;
+        }
+        #next-btn:hover, #restart-btn:hover, #home-btn:hover { background: #764ba2; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>🎮 Saymon Special Quiz 🏆</h1>
+        <div id="progress">Question 1/52</div>
+        <div id="score">Score: 0</div>
+        <div id="quiz">
+            <div class="question" id="question">Loading...</div>
+            <div class="options" id="options"></div>
+            <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+        <div id="result" style="display:none;">
+            <h2>Quiz Complete!</h2>
+            <p id="final-score"></p>
+            <p id="rank"></p>
+            <button id="restart-btn" onclick="restartQuiz()">Play Again</button>
+            <button id="home-btn" onclick="window.location.href='index.html'">Back to Home</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            // DORAEMON + GAMES = 20 Questions
+            {q: "Doraemon er favorite khabar ki?", o: ["Ladoo", "Dorayaki", "Rasgulla", "Cake"], a: 1},
+            {q: "Nobita kon class e pore?", o: ["Class 3", "Class 4", "Class 5", "Class 6"], a: 2},
+            {q: "Doraemon er body color ki?", o: ["Blue", "White", "Yellow", "Red"], a: 0},
+            {q: "Shizuka er priyo kaj ki?", o: ["Gan gawa", "Bath kora", "Violin bajano", "Drawing"], a: 1},
+            {q: "Gian er choto boner naam ki?", o: ["Jaiko", "Miyoko", "Hana", "Suneo"], a: 0},
+            {q: "Doraemon kon shotabdi theke esheche?", o: ["21st", "22nd", "23rd", "20th"], a: 1},
+            {q: "Suneo er hobby ki?", o: ["Cricket", "Show off kora", "Reading", "Cooking"], a: 1},
+            {q: "Doraemon er pocketer naam ki?", o: ["Magic Pocket", "4D Pocket", "Anywhere Pocket", "Time Pocket"], a: 1},
+            {q: "Nobita er dushman ke?", o: ["Gian", "Suneo", "Dekeisugi", "Teacher"], a: 2},
+            {q: "Tic Tac Toe te kotogula ghor thake?", o: ["6", "8", "9", "10"], a: 2},
+            {q: "Rock Paper Scissors e Rock ke haray?", o: ["Scissors", "Paper", "Rock", "Kew na"], a: 1},
+            {q: "Minecraft kon type er game?", o: ["Racing", "Sandbox", "Fighting", "Puzzle"], a: 1},
+            {q: "PUBG er full form ki?", o: ["PlayerUnknown's Battlegrounds", "Public Gaming", "Pro Unknown Battle Game", "Player Battle"], a: 0},
+            {q: "Chess e total koyta piece thake?", o: ["16", "32", "64", "24"], a: 1},
+            {q: "Free Fire kon desher company?", o: ["China", "USA", "Singapore", "Korea"], a: 2},
+            {q: "Ludo te kotogula guti thake per player?", o: ["2", "3", "4", "6"], a: 2},
+            {q: "Mario kon company er game?", o: ["Sony", "Nintendo", "Sega", "Xbox"], a: 1},
+            {q: "Among Us e imposter er kaj ki?", o: ["Task kora", "Kill kora", "Report kora", "Vote dewa"], a: 1},
+            {q: "GTA er full form ki?", o: ["Grand Theft Auto", "Great Travel Adventure", "Game Team Action", "Grand Team Attack"], a: 0},
+            {q: "Call of Duty kon type er game?", o: ["Racing", "FPS", "Puzzle", "Sports"], a: 1},
+
+            // SPORTS = 20 Questions
+            {q: "Football e ek team e koyjon player thake?", o: ["9", "10", "11", "12"], a: 2},
+            {q: "Cricket e ek over e koyta ball?", o: ["4", "5", "6", "8"], a: 2},
+            {q: "Messi kon desher player?", o: ["Brazil", "Portugal", "Argentina", "Spain"], a: 2},
+            {q: "Cricket World Cup koy bochor por hoy?", o: ["2", "3", "4", "5"], a: 2},
+            {q: "Olympics koy bochor por por hoy?", o: ["2", "3", "4", "5"], a: 2},
+            {q: "Basketball e ek team e koyjon player khele?", o: ["5", "6", "7", "11"], a: 0},
+            {q: "Tennis e 'Love' mane ki?", o: ["10 point", "20 point", "0 point", "Win"], a: 2},
+            {q: "Badminton e shuttle ke ki bole?", o: ["Ball", "Cock", "Shuttle", "Feather"], a: 2},
+            {q: "Ronaldo er jersey number koto?", o: ["10", "7", "9", "11"], a: 1},
+            {q: "IPL kon deshe hoy?", o: ["Pakistan", "India", "Bangladesh", "Sri Lanka"], a: 1},
+            {q: "Shakib Al Hasan kon desher cricketer?", o: ["India", "Pakistan", "Bangladesh", "Afghanistan"], a: 2},
+            {q: "FIFA World Cup koy bochor por por hoy?", o: ["2", "3", "4", "6"], a: 2},
+            {q: "Virat Kohli kon khelay famous?", o: ["Football", "Cricket", "Tennis", "Hockey"], a: 1},
+            {q: "Hockey te ball er bodole ki use hoy?", o: ["Stone", "Puck", "Disc", "Ring"], a: 1},
+            {q: "Usain Bolt kon khelay famous?", o: ["Swimming", "Running", "Boxing", "Cycling"], a: 1},
+            {q: "Chess ke 'Game of Kings' bola hoy keno?", o: ["King ra khele", "Brain er khela", "Expensive", "Old game"], a: 1},
+            {q: "Cricket e 'Century' mane koy run?", o: ["50", "75", "100", "200"], a: 2},
+            {q: "Football e 'Hat-trick' mane ki?", o: ["3 goal", "3 assist", "3 save", "3 foul"], a: 0},
+            {q: "Neeraj Chopra kon khelay gold jitse?", o: ["Shot Put", "Javelin", "Long Jump", "Discus"], a: 1},
+            {q: "Kabaddi kon desher national game?", o: ["India", "Bangladesh", "Nepal", "Pakistan"], a: 1},
+
+            // ABOUT SAYMON = 12 Questions
+            {q: "Saymon er Game Zone e koyta game ache?", o: ["2", "3", "4", "5"], a: 1},
+            {q: "Saymon er website kon theme e banano?", o: ["Naruto", "Doraemon", "Pokemon", "Avengers"], a: 1},
+            {q: "Saymon er site e comment kora jay?", o: ["Na", "Hae", "Shudhu admin", "Jani na"], a: 1},
+            {q: "Saymon er Game Zone kon color e banano?", o: ["Red-Black", "Blue-Purple", "Green-Yellow", "Pink-White"], a: 1},
+            {q: "Saymon kon type er developer?", o: ["App", "Game", "Web", "Software"], a: 2},
+            {q: "Saymon er site e kon character bounce kore?", o: ["Nobita", "Doraemon", "Gian", "Shizuka"], a: 1},
+            {q: "Saymon er favorite cartoon ke?", o: ["Pokemon", "Doraemon", "Shinchan", "Tom & Jerry"], a: 1},
+            {q: "Saymon er Game Zone kothay host kora?", o: ["Netlify", "Vercel", "GitHub Pages", "Heroku"], a: 2},
+            {q: "Saymon er site e 'Made with ❤️ by' ke?", o: ["Nobita", "Saymon", "Doraemon", "Google"], a: 1},
+            {q: "Saymon er site e comment save hoy kothay?", o: ["Local", "Firebase", "MySQL", "Cookie"], a: 1},
+            {q: "Saymon er prothom game konta chilo site e?", o: ["RPS", "Quiz", "Tic Tac Toe", "Snake"], a: 2},
+            {q: "Saymon ki ekhon gaming website er owner?", o: ["Na", "Hae bhai 100%", "Maybe", "Kal hobe"], a: 1}
+        ];
+        let currentQ = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            answered = false;
+            document.getElementById('next-btn').style.display = 'none';
+            const q = questions[currentQ];
+            document.getElementById('progress').innerText = `Question ${currentQ + 1}/${questions.length}`;
+            document.getElementById('question').innerText = q.q;
+
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+
+            q.o.forEach((option, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.innerText = option;
+                btn.onclick = () => checkAnswer(index);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected) {
+            if(answered) return;
+            answered = true;
+
+            const q = questions[currentQ];
+            const options = document.querySelectorAll('.option');
+
+            if(selected === q.a) {
+                options[selected].classList.add('correct');
+                score++;
+                document.getElementById('score').innerText = `Score: ${score}`;
+            } else {
+                options[selected].classList.add('wrong');
+                options[q.a].classList.add('correct');
+            }
+
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if(currentQ < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('final-score').innerText = `Tomar Score: ${score}/${questions.length}`;
+
+            let rank = '';
+            const percent = (score/questions.length)*100;
+            if(percent >= 90) rank = '🏆 LEGEND! Tumi Saymon er thekeo beshi jano!';
+            else if(percent >= 70) rank = '🔥 PRO GAMER! Saymon proud of you!';
+            else if(percent >= 50) rank = '😎 NOT BAD! Aro practice koro';
+            else rank = '💪 NOOB! Abar khel, Saymon er moto hou';
+
+            document.getElementById('rank').innerText = rank;
+            document.getElementById('restart-btn').style.display = 'inline-block';
+            document.getElementById('home-btn').style.display = 'inline-block';
+        }
+
+        function restartQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('score').innerText = 'Score: 0';
+            document.getElementById('quiz').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
