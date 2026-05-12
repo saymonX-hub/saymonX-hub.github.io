@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,15 +71,7 @@
 
   function drawBoard() {
     boardDiv.innerHTML = "";
-    board.forEach((cell, index) => {
-      const cellEl = document.createElement("button");
-      cellEl.className = "ttt-cell";
-      cellEl.textContent = cell;
-      cellEl.onclick = () => makeMove(index);
-      boardDiv.appendChild(cellEl);
-    });
-  }
-
+    board.forEach((cell, index) =>       const cellEl = document.createElement("button"     boardDiv.appendChild(cellEl
   function makeMove(index) {
     if (board[index]!== "" ||!gameActive) return;
     board[index] = currentPlayer;
@@ -142,6 +134,4 @@ function computerMove() {
   board.forEach((cell, i) => { if(cell === "") empty.push(i); });
   if(empty.length > 0) {
     let randomMove = empty[Math.floor(Math.random() * empty.length)];
-    board[randomMove] = "O";
-  }
-}
+    
