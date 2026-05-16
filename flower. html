@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glowing Flower Animation</title>
+<style>
+body {
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.flower {
+  position: absolute;
+  bottom: 10vmin;
+  transform-origin: bottom center;
+  z-index: 10;
+  --fl-speed: 0.8s;
+}
+
+.flower--1 {
+  animation: moving-flower-1 4s linear infinite;
+}
+
+.flower--1 .flower__line {
+  height: 70vmin;
+  animation-delay: 0.3s;
+}
+
+.flower__line {
+  width: 2vmin;
+  height: 56vmin;
+  background-image: linear-gradient(to left, rgb(0, 0, 0), rgb(0, 100, 100));
+  border-radius: 4vmin;
+  position: relative;
+}
+
+.flower__leaf {
+  position: absolute;
+  left: 50%;
+  bottom: 2vmin;
+  transform: translateX(-50%);
+  width: 8vmin;
+  height: 8vmin;
+  background: #00bcd4;
+  border-radius: 50% 0 50% 0;
+  box-shadow: 0 0 15px #00bcd4;
+}
+
+.flower__leaf:nth-child(2) {
+  transform: translateX(-50%) rotate(120deg);
+}
+
+.flower__leaf:nth-child(3) {
+  transform: translateX(-50%) rotate(240deg);
+}
+
+.flower__light {
+  position: absolute;
+  bottom: 0vmin;
+  width: 1vmin;
+  height: 1vmin;
+  background-color: #fff;
+  border-radius: 50%;
+  filter: blur(0.2vmin);
+  animation: light-ans 4s linear infinite backwards;
+}
+
+.flower__light:nth-child(1) {
+  left: -2vmin;
+  animation-delay: 1s;
+}
+
+.flower__light:nth-child(2) {
+  left: 3vmin;
+  animation-delay: 0.8s;
+}
+
+.flower__light:nth-child(3) {
+  left: -1vmin;
+  animation-delay: 0.6s;
+}
+
+.flower__glow {
+  position: absolute;
+  left: 50%;
+  top: -10vmin;
+  transform: translateX(-50%);
+  width: 10vmin;
+  height: 10vmin;
+  background: radial-gradient(circle, rgba(0,188,212,0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20vmin;
+  background: linear-gradient(to top, #0a0a0a, transparent);
+}
+
+.grass__blade {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 15vmin;
+  background: linear-gradient(to top, #00ff00, transparent);
+  animation: sway 3s ease-in-out infinite alternate;
+}
+
+@keyframes moving-flower-1 {
+ 0%, 100% {
+    transform: translateX(-50%) rotate(-5deg);
+  }
+ 50% {
+    transform: translateX(-50%) rotate(5deg);
+  }
+}
+
+@keyframes light-ans {
+ 0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+ 50% {
+    opacity: 1;
+  }
+ 100% {
+    opacity: 0;
+    transform: translateY(-20vmin);
+  }
+}
+
+@keyframes glow {
+ 0% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(0.8);
+  }
+ 100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+@keyframes sway {
+ 0% {
+    transform: rotate(-10deg);
+  }
+ 100% {
+    transform: rotate(10deg);
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class
